@@ -127,7 +127,7 @@
     <!-- ここからチェックボックスのエリア(Check_Box) -->
     <div class="prefbox">
         <div v-for="n in this.prefectures" :key="n.prefName" class="prefcheck" >
-            <input type="checkbox" v-model="checkedpref" :id="n.prefCode" :value="n.prefCode" @change="changed(n.prefCode,n.prefName)" :checked="this.lastcheck==n.prefCode"/>
+            <input type="checkbox" v-model="checkedpref" :id="n.prefCode" :value="n.prefCode" @change="changed(n.prefCode,n.prefName)"/>
             {{ n.prefName }}
         </div>
     </div>
