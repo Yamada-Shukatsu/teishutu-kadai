@@ -61,15 +61,9 @@
         methods: {
             //以下、人口を取得してグラフ表示
             changed(item, itemname) {
-                this.lastcheck = item;
                 console.log(this.checkedpref.includes(item));
-                //console.log(this.lastcheck);
-                //console.log("checkedpref.length…" + this.checkedpref.length);
-                
                 var jinkou_url = 'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=' + item;
                 if (this.checkedpref.includes(item) == true) {
-                    //if (this.checkedpref.length > 1) this.checkedpref.splice(0, 1, this.lastcheck)
-                    //if (this.checkedpref.length > 1) this.checkedpref.splice(1, 1);
                     this.loaded = false;
                     if (this.graph) this.graph.destroy();
                     axios
