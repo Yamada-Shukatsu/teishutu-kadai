@@ -6,6 +6,8 @@
     // component logic
     // declare some reactive state here.
     import axios from 'axios';
+    let prefectures = null;
+    let jinkoudata = null;
     import Chart from 'chart.js/auto';
 </script>
 
@@ -30,8 +32,7 @@
                 loaded: false,
                 //lastcheck: -1,//最後にチェックされた数字。チェックボックスの選択数制限で１個に制限しようとした際に使用(現在不使用。)
                 graph: null,
-                prefectures: null,
-                jinkoudata: null,
+                
             }
         },
 
@@ -47,7 +48,7 @@
             axios
                 .get(prefectures_url, { headers: { 'X-API-KEY': process.env.VUE_APP_APIKEY } })
                 .then(response => {
-                    this.prefectures = response.data.result;//完成まで残しておくこと。
+                    prefectures = response.data.result;//完成まで残しておくこと。
                     this.loaded = true;
                     //-----------------------------
                     console.log("APIを用いて都道府県一覧を取得しました。");
@@ -75,11 +76,11 @@
                     axios
                         .get(jinkou_url, { headers: { 'X-API-KEY': process.env.VUE_APP_APIKEY } })
                         .then(response => {
-                            this.jinkoudata = response.data.result;
+                            jinkoudata = response.data.result;
                             //-----------------------------
                             console.log("人口の取得の実行がされました。");
-                            this.datacollection.labels = [this.jinkoudata.data[0].data[0].year, this.jinkoudata.data[0].data[2].year, this.jinkoudata.data[0].data[4].year, this.jinkoudata.data[0].data[6].year, this.jinkoudata.data[0].data[8].year, this.jinkoudata.data[0].data[10].year, this.jinkoudata.data[0].data[12].year]
-                            this.datacollection.datasets.data = [this.jinkoudata.data[0].data[0].value, this.jinkoudata.data[0].data[2].value, this.jinkoudata.data[0].data[4].value, this.jinkoudata.data[0].data[6].value, this.jinkoudata.data[0].data[8].value, this.jinkoudata.data[0].data[10].value, this.jinkoudata.data[0].data[12].value]
+                            this.datacollection.labels = [jinkoudata.data[0].data[0].year, jinkoudata.data[0].data[2].year, jinkoudata.data[0].data[4].year, jinkoudata.data[0].data[6].year, jinkoudata.data[0].data[8].year, jinkoudata.data[0].data[10].year, jinkoudata.data[0].data[12].year]
+                            this.datacollection.datasets.data = [jinkoudata.data[0].data[0].value, jinkoudata.data[0].data[2].value, jinkoudata.data[0].data[4].value, jinkoudata.data[0].data[6].value, jinkoudata.data[0].data[8].value, jinkoudata.data[0].data[10].value, jinkoudata.data[0].data[12].value]
                             //-----------------
                             this.loaded = true;
                             this.graph = new Chart("glaphspace", {
@@ -126,8 +127,8 @@
     <h1>{{ message2 }}</h1>
     <!-- ここからチェックボックスのエリア(Check_Box) -->
     <div class="prefbox">
-        <div v-for="n in this.prefectures" :key="n.prefName" class="prefcheck" >
-            <input type="checkbox" v-model="checkedpref" :id="n.prefCode" :value="n.prefCode" @change="changed(n.prefCode,n.prefName)" :checked="this.lastcheck==n.prefCode"/>
+        <div v-for="n in prefectures" :key="n.prefName" class="prefcheck" >
+            <input type="checkbox" v-model="checkedpref" :id="n.prefCode" :value="n.prefCode" @change="changed(n.prefCode,n.prefName)"/>
             {{ n.prefName }}
         </div>
     </div>
