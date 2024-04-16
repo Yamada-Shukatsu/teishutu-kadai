@@ -35,26 +35,17 @@
             }
         },
 
-        //apidata() {
-        //    return {
-        //        prefectures: null,
-        //        jinkoudata: null,
-                
-        //    }
-        //},
         mounted() {
             var prefectures_url = 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
             axios
                 .get(prefectures_url, { headers: { 'X-API-KEY': process.env.VUE_APP_APIKEY } })
                 .then(response => {
-                    this.prefectures = response.data.result;//完成まで残しておくこと。
+                    this.prefectures = response.data.result;
                     this.loaded = true;
                     //-----------------------------
                     console.log("mounted()");
                 });
 
-            //やろうとしてること
-            //グラフ→1本は表示できた。しかしエラーが残っている。(https://maps.multisoup.co.jp/blog/5180/や https://stackblitz.com/github/apertureless/vue-chartjs/tree/main/sandboxes/line?file=src%2FApp.vue,src%2FchartConfig.ts,index.ts を参考とする予定)
         },
 
 
