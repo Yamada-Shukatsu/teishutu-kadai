@@ -30,16 +30,18 @@
                 loaded: false,
                 //lastcheck: -1,//最後にチェックされた数字。チェックボックスの選択数制限で１個に制限しようとした際に使用(現在不使用。)
                 graph: null,
+                prefectures: null,
+                jinkoudata: null,
             }
         },
 
-        apidata() {
-            return {
-                prefectures: null,
-                jinkoudata: null,
+        //apidata() {
+        //    return {
+        //        prefectures: null,
+        //        jinkoudata: null,
                 
-            }
-        },
+        //    }
+        //},
         mounted() {
             var prefectures_url = 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
             axios
