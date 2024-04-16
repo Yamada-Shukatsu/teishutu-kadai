@@ -29,3 +29,4 @@ Google Chrome バージョン(PC): 123.0.6312.107（Official Build） （64 ビット）
 ・複数のグラフ表示を実装できていない。(datacollectionを配列にしてcheckedprefの数字の出入りに合わせて配列操作などで実装できるかを考えていたが、実装できなかった。)
 ・チェックボックスが押されたときに現れる「Uncaught (in promise) TypeError: Cannot convert object to primitive value」を解消できなかった。
 ・本来であればグラフ描画部分を別のソースコードファイルにする方が複数人での開発においては最適解であると思われる(実際Chart.jsの使い方を書いてるサイトではファイルを分けているものが多かった)が、ファイルを読み込めない問題を解決できなかったため全てを1ファイルで完結するようにした。
+・TypeError: Cannot read properties of undefined (reading 'prefectures')がビルドしてgithubに置いたデータでのみ発生し、解決前に時間切れとなった。

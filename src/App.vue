@@ -30,8 +30,8 @@
                 loaded: false,
                 //lastcheck: -1,//最後にチェックされた数字。チェックボックスの選択数制限で１個に制限しようとした際に使用(現在不使用。)
                 graph: null,
-                prefectures: null,
-                jinkoudata: null,
+                prefectures: null,//これがnpm run buildしたものだと見つからないようだ
+                jinkoudata: null,//これがnpm run buildしたものだと見つからないようだ
             }
         },
 
@@ -50,7 +50,7 @@
                     this.prefectures = response.data.result;//完成まで残しておくこと。
                     this.loaded = true;
                     //-----------------------------
-                    console.log("APIを用いて都道府県一覧を取得しました。");
+                    console.log("mounted()");
                 });
 
             //やろうとしてること
