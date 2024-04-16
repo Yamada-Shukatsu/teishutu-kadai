@@ -35,13 +35,6 @@
             }
         },
 
-        //apidata() {
-        //    return {
-        //        prefectures: null,
-        //        jinkoudata: null,
-                
-        //    }
-        //},
         mounted() {
             var prefectures_url = 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
             axios
