@@ -1,36 +1,35 @@
-# kadai-step1(�A���Z�p�ۑ�)
+# kadai-step1(就活技術課題)
 
-## �d�l(�������@)
-```
-�����ɂ͂��ꂼ��̋@�\���ǂ̂悤�Ɏ����������������B
-�Ȃ��Aenv�t�@�C���Ŕ铽���Ă�API�L�[�͘R��o���ꍇ�̎����l���A��p��Gmail�A�h���X���擾���ēo�^�B
+## 仕様(実装方法)
+ここにはそれぞれの機能をどのように実装したかを示す。
+なお、envファイルで秘匿してるAPIキーは漏れ出た場合の事を考え、専用にGmailアドレスを取得して登録。
 
-### �y�[�W�\����
-mounted()�̕����œs���{���ꗗ���擾(JSON��prefectures�ɓ���)���A���̌��ʂɊ�Â���v-for�Ń`�F�b�N�{�b�N�X�𐶐��Bvalue���Ɍ��R�[�h������B
+### ページ表示時
+mounted()の部分で都道府県一覧を取得(JSONはprefecturesに入る)し、その結果に基づいてv-forでチェックボックスを生成。value等に県コードが入る。
 
 
-### �`�F�b�N�{�b�N�X�I����
-methods:�̒���checked�֐��������A���̒��ň����ɉ�����API����l���\�����擾(JSON��jinkoudata�ɓ���)���A�O���t�\���Ɏg���z������o���đ���B
-��2�����Ɍ���(n.prefName)���w�肷�邱�ƂŃ��x���ɂ��̂܂ܑ�����Č����̕\���������B
+### チェックボックス選択時
+methods:の中にchecked関数を書き、その中で引数に応じてAPIから人口構成を取得(JSONはjinkoudataに入る)し、グラフ表示に使う配列を取り出して代入。
+第2引数に県名(n.prefName)を指定することでラベルにそのまま代入して県名の表示を実装。
 
 ### CSS
-�X�}�[�g�t�H���APC�̗����ɂ����ĉ�ʂ���`�F�b�N�{�b�N�X�ȂǕ\�����Ă�����̂��͂ݏo�Ȃ��悤�ɉ�ʕ�����ɂ���������div��\���B
+スマートフォン、PCの両方において画面からチェックボックスなど表示しているものがはみ出ないように画面幅を基準にした割合でdivを表示。
 
-## �J���Ɏg�p������
-Microsoft Visual Studio Community 2022 (64 �r�b�g) Version 17.1.3
+## 開発に使用した環境
+Microsoft Visual Studio Community 2022 (64 ビット) Version 17.1.3
 -Node.js Tools   1.5.40105.1 
 Node.js v18.13.0.
 git version 2.44.0.windows.1
 Windows11 version 23H2
-Google Chrome �o�[�W����(PC): 123.0.6312.107�iOfficial Build�j �i64 �r�b�g�j
+Google Chrome バージョン(PC): 123.0.6312.107（Official Build） （64 ビット）
 
-## �c�����ۑ�_
-�E�`�F�b�N�{�b�N�X�̉����鐔�𐧌����Ă��Ȃ�(����̎�����Ԃ��ƂP�������瑼�������Ȃ��Ȃ�܂��͍Ō�ɉ������`�F�b�N�{�b�N�X�ȊO�������ĂȂ���Ԃɂ���̂��]�܂����悤�Ɏv���B)
-�E�����̃O���t�\���������ł��Ă��Ȃ��B(datacollection��z��ɂ���checkedpref�̐����̏o����ɍ��킹�Ĕz�񑀍�ȂǂŎ����ł��邩���l���Ă������A�����ł��Ȃ������B)
-�E�`�F�b�N�{�b�N�X�������ꂽ�Ƃ��Ɍ����uUncaught (in promise) TypeError: Cannot convert object to primitive value�v�������ł��Ȃ������B
-�E�{���ł���΃O���t�`�敔����ʂ̃\�[�X�R�[�h�t�@�C���ɂ�����������l�ł̊J���ɂ����Ă͍œK���ł���Ǝv����(����Chart.js�̎g�����������Ă�T�C�g�ł̓t�@�C���𕪂��Ă�����̂���������)���A�t�@�C����ǂݍ��߂Ȃ����������ł��Ȃ��������ߑS�Ă�1�t�@�C���Ŋ�������悤�ɂ����B
-�ETypeError: Cannot read properties of undefined (reading 'prefectures')���r���h����github�ɒu�����f�[�^�ł̂ݔ������A�����O�Ɏ��Ԑ؂�ƂȂ����B
-�E�����̉ۑ�_����������������Vue.js�̓��������݂���Ȃ��܂ܐ����ƂɈڂ炴��𓾂Ȃ�������ԂƁA�{���ʂ̃t�@�C���ɂ��ēǂݍ��ނׂ����̂܂�(�t�@�C�������܂��ǂݍ��߂Ȃ���������)1�t�@�C���ŉ������悤�Ƃ����̂����̉\���������B
-�EvisualStudio����ESLint���̐ݒ�͒ǉ����Ă͂��邪�A�����������Ă邩���s���B
-## npm run serve(Localhost��URL�ɃA�N�Z�X���ĕ\��)�̃X�N���[���V���b�g
+## 残った課題点
+・チェックボックスの押せる数を制限していない(現状の実装状態だと１つ押したら他が押せなくなるまたは最後に押したチェックボックス以外を押してない状態にするのが望ましいように思う。)
+・複数のグラフ表示を実装できていない。(datacollectionを配列にしてcheckedprefの数字の出入りに合わせて配列操作などで実装できるかを考えていたが、実装できなかった。)
+・チェックボックスが押されたときに現れる「Uncaught (in promise) TypeError: Cannot convert object to primitive value」を解消できなかった。
+・本来であればグラフ描画部分を別のソースコードファイルにする方が複数人での開発においては最適解であると思われる(実際Chart.jsの使い方を書いてるサイトではファイルを分けているものが多かった)が、ファイルを読み込めない問題を解決できなかったため全てを1ファイルで完結するようにした。
+・TypeError: Cannot read properties of undefined (reading 'prefectures')がビルドしてgithubに置いたデータでのみ発生し、解決前に時間切れとなった。
+・これらの課題点が発生した原因はVue.jsの特徴をつかみきれないまま制作作業に移らざるを得なかった状態と、本来別のファイルにして読み込むべきものまで(ファイルがうまく読み込めない問題もあり)1ファイルで解決しようとしたのが問題の可能性が高い。
+・visualStudio内でESLint等の設定は追加してはいるが、正しく動いてるかが不明。
+## npm run serve(LocalhostにURLにアクセスして表示)のスクリーンショット
 ![SS-VUE](https://github.com/Yamada-Shukatsu/teishutu-kadai/assets/165787876/6808f118-2a88-4b65-94df-196608137d57)
